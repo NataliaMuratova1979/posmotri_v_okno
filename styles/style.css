@@ -13,9 +13,10 @@ html {
   block-size: 100%;
   margin: auto;
   color: #fff;
-  font-family: 'Fira Sans Condensed', sans-serif;
+  font-family: 'Fira Sans Condensed', 'Arial', sans-serif;
   font-size: 18px;
   background-color: #1b1919;
+  padding: 133px 30px;
 }
 
 h1,
@@ -36,3 +37,445 @@ ul,
 ol {
   list-style: none;
 }
+
+.content { /*левая часть плюс правая часть*/
+  height: 534px;
+  display: grid;
+  grid-template-columns: 711px 399px;
+  gap: 30px;
+  align-items: end; 
+}
+
+.result { /*левая часть*/
+  align-self: end;
+  display: flex;
+  flex-direction: column;
+  }
+
+.result__video-container { /*видеоконтейнер с отступами*/
+  width: 711px;
+  height: 386px;
+  margin-top: 78px;
+  margin-bottom: 18px;
+  position: relative;
+  }
+
+.result__video { /*видео*/
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  object-position: center;
+  }
+
+.preloader {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 11;
+}
+
+/*____________ПОЛЕ ФОРМЫ *Город*_______________
+ <form class="search-form">
+  <fieldset class="search-form__fieldset">
+            <h2 class="search-form__fieldset-title">Город</h2>
+            <label class="search-form__label">
+              <span class="search-form__label-text visually-hidden">Город</span>
+              <input
+                type="text"
+                placeholder="Санкт Петербург, например"
+                name="city"
+                class="search-form__textfield"
+              />
+            </label>
+  </fieldset>
+  _______________________________________________*/
+
+.search-form { /* <form> БЛОК (блок Город) + (Время суток) + (Найти)*/
+  display: grid;
+  grid-template-columns: 225px 212px 194px;
+  /*gap: 32px;*/
+  justify-content: space-between;
+  align-items: start;
+}
+
+.search-form__fieldset { /* <fieldset> Блоки Город + Время суток */
+  border: none;
+  font-family: 'Fira Sans Condensed', 'Arial', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.search-form__fieldset-title { /* h2 Заголовки Город и Время суток*/
+  font-family: 'Fira Sans Condensed', 'Arial', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.search-form__label { /* <label> полоска поиска города, блок утро, блок день, блок ночь */
+  display: flex; 
+  flex-direction: row;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.search-form__label-text { /*текст в поле ввода город + Утро День Ночь*/
+  appearance: none; 
+}
+
+input::placeholder { /*Санкт-Петербург, например*/
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  color: rgb(255 255 255/ 0.7);
+}
+
+.visually-hidden { /*текст Город в строке поиска, браузерные чекбоксы*/
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;  
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);  
+  white-space: nowrap;
+} 
+
+.search-form__textfield { /*поле ввода города*/
+  width: 100%; 
+  color: rgb(255 255 255/ 0.7);
+  font-family: 'Fira Sans Condensed', 'Arial', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  background-color: transparent;
+  border-top: 1px solid #fff;
+  border-right: none;
+  border-bottom: 1px solid #fff;
+  border-left: none;
+}
+
+.search-form__textfield:focus { /* */
+  border: none;
+  outline: none;
+}
+
+.search-form__textfield:focus-visible { /*город focus-visible*/
+  border-top: 1px solid #fff;
+  border-right: none;
+  border-bottom: 1px solid #fff;
+  border-left: none;
+  outline-color: #fff;
+  outline-style: solid;
+  outline-offset: 3px;
+  outline-width: 1px;
+}
+.search-form__textfield:active { /*город active*/
+  border: none;
+  outline-color: #fff;
+  outline-style: solid;
+  outline-offset: 0px;
+  outline-width: 1px;
+}
+
+/*_________ПОЛЯ ФОРМЫ *Утро* *День* *Вечер*_____________
+<fieldset class="search-form__fieldset">
+            <h2 class="search-form__fieldset-title">Время суток</h2>
+            <div class="search-form__checkbox-list">
+              <label class="search-form__label">
+                <input
+                  type="checkbox"
+                  name="time"
+                  value="morning"
+                  class="search-form__checkbox visually-hidden"
+                />
+                <span class="search-form__pseudo-checkbox"></span>
+                <span class="search-form__label-text">Утро</span>
+              </label>
+__________________________________________________________*/
+
+/*.search-form__fieldset уже стилизован (Блоки Город + Время суток) */
+
+/*.search-form__fieldset-title уже стилизован /*Заголовки Город и Время суток*/
+
+/* .search-form__label уже стилизован - полоска поиска города /*
+  display: flex; 
+  flex-direction: row;
+  align-items: center;
+  width: fit-content;*/
+
+.search-form__checkbox {
+  cursor: pointer;
+}
+
+.search-form__pseudo-checkbox { /*квадратик 19x19*/
+  display: flex;
+  width: 19px;
+  height: 19px;
+  border: 1px solid #fff;
+  background-color: transparent;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.search-form__checkbox:checked + .search-form__pseudo-checkbox::before { /*комбинатор '+' выбрал элемент, который находится непосредственно после указанного элемента, который находится в состоянии :checked*/
+  content: "";
+  width: 15px;
+  height: 15px;
+  margin-top: 1px;
+  margin-left: 1px;
+  background-color: #fff;
+}
+
+/*.search-form__label-text уже стилизован /*текст в поле ввода город + Утро День Ночь*/
+
+.search-form__label .search-form__label-text {
+  color: #fff;
+}
+
+.search-form__checkbox:active .search-form__label-text{
+  outline: none;
+  text-decoration: none;
+}
+
+.search-form__checkbox-list { /*блоки утро + день + ночь выстраиваем в линию*/
+  display: flex; 
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+
+.search-form__label-text:hover { /*РАБОТАЕТ, НЕ ТРОГАТЬ*/
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.search-form__checkbox:hover ~ .search-form__label-text{ /*РАБОТАЕТ, НЕ ТРОГАТЬ*/
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.search-form__label:has(.search-form__checkbox:focus) { /* */
+  outline: none;
+  border: none;
+}
+
+.search-form__label:has(.search-form__checkbox:focus-visible) { /* */
+  outline-color: #fff;
+  outline-style: solid;
+  outline-offset: 2px;
+  outline-width: 1px;
+}
+
+.search-form__label > .search-form__checkbox:focus { /*комбинатор '+' выбрал элемент, который находится непосредственно после указанного элемента, который находится в состоянии :focus*/
+ outline: none;
+}
+
+/* __________CЕКЦИЯ 2__________
+<section class="content__details">
+        <h1 class="title">
+          <span class="content__accent">По-</span><br />смотри<br />в окно
+        </h1>
+        <ul class="content__list">
+          <!-- ЗДЕСЬ ОКАЖУТСЯ ТЕМПЛЕЙТЫ КАРТОЧЕК -->
+        </ul>
+      </section> 
+_______________________________*/
+
+.content__details { /*вся правая часть*/
+  height: 534px;
+}
+      
+.title { /*заголовок страницы*/
+  font-family: 'Oswald','Arial', sans-serif;
+  font-size: 75px;
+  font-weight: 700;
+  line-height: 70px;
+  letter-spacing: 0em;
+  text-align: left;
+  text-transform: uppercase;
+  margin-bottom: 26px;
+}
+
+.content__accent { /*буквы ПО в заголовке*/
+  color: #545050;
+}
+
+.content__list { /* скролл-блок город/картинка */
+  height: 298px;
+  overflow: auto;
+  justify-self: end;
+  position: relative;
+}
+
+/*___________КАРТОЧКА______________
+<template class="cards-list-item-template">
+      <li class="content__list-item">
+        <a href="#0" class="content__card-link">
+          <article class="content__video-card">
+            <div class="content__video-card-description-container">
+              <h2 class="content__video-card-title"></h2>
+              <p class="content__video-card-description"></p>
+            </div>
+            <img src="" alt="" class="content__video-card-thumbnail" />
+          </article>
+        </a>
+      </li>
+    </template>
+______________________________________*/
+
+/*.content__video-card-description-container { /*div заголовок + абзац
+  margin-top: 4px;
+} */
+
+.content__list-item {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  margin-bottom: 36px;
+}
+
+.content__card-link { /*ссылка-обертка для карточек, обнуляем стили*/
+  display: block; 
+  text-decoration: none;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.content__video-card { /*aritcle (заголовок + абзац) + карточка*/
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;  
+}
+
+.content__video-card-description-container { /*чтобы буквы заголовка не вылезали выше картинки в состоянии focus*/
+  padding-top: 2px;
+  padding-left: 1px;
+}
+
+.content__video-card-title {/*h2 Заголовки карточек*/
+  font-family: 'Oswald','Arial', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 30px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #fff;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.content__video-card-description { /*p абзац описание карточки*/
+  margin-top: 6px;
+  font-family: 'Fira Sans Condensed', 'Arial', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #fff;
+}
+
+.content__video-card-thumbnail { /*картинка*/
+  width: 194px;
+  height: 103px;
+  justify-self: end;
+}
+
+.content__list::-webkit-scrollbar { /*скрываем скроллбар*/
+  width: 0;
+}
+
+.content__list { /*еще скрываем скроллбар*/
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.content__card-link:active {
+  background-color: #545050;
+  height: min-content;
+}
+
+.content__card-link:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  color: #fff;
+}
+
+.content__card-link:focus {
+ outline: none;
+}
+
+.content__card-link:focus-visible .content__video-card{
+  text-decoration: none;
+  color: #fff; 
+  outline-color: #fff;
+  outline-style: solid;
+  outline-offset: 1px;
+  outline-width: 1px;
+}
+
+/*__________КНОПКА____________
+<template class="more-button-template">
+      <li><button class="button more-button">Показать еще</button></li>
+    </template>
+________________________________*/
+
+.button {
+  height: min-content;
+  font-family: 'Fira Sans Condensed','Arial', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: center;
+  border: 1px solid #fff;
+  color: #fff;
+  background-color: transparent;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.button.search-form__submit-button { /*кнопочка Найти*/
+  align-self: end;
+}
+
+.more-button {
+  width: 99%;
+  margin-bottom: 1.5px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.content__card-link:focus-visible .more-button {
+  outline-color: #fff;
+  outline-style: solid;
+  outline-offset: 1px;
+  outline-width: 1px;
+}
+
+button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+button:active {
+  background-color: #545050;
+  text-decoration: none;
+}
+
+button:focus-visible {
+  outline-color: #fff;
+  outline-style: solid;
+  outline-offset: 1px;
+  outline-width: 1px;
+}
+
