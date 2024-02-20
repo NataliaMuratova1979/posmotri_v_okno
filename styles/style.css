@@ -45,7 +45,6 @@ ol {
   display: grid;
   grid-template-columns: 711px 399px;
   gap: 30px;
-  overflow: auto;
   align-items: end; 
   margin: auto;
 }
